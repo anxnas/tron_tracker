@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -36,19 +38,23 @@ app.add_middleware(ErrorHandlerMiddleware)
 app.include_router(api_router, prefix="/api")
 
 
-@app.on_event("startup")
-async def startup_event():
-    """Выполняется при запуске приложения."""
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Менеджер жизненного цикла приложения.
+
+    Обрабатывает события запуска и завершения работы приложения.
+    """
     log.info("Приложение запущено")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Выполняется при остановке приложения."""
+    yield
     log.info("Приложение остановлено")
 
 
 @app.get("/health")
 async def health_check():
     """Проверка работоспособности приложения."""
-    return {"status": "ok"}
+    return {
+        "status": "ok",
+        "version": settings.APP_VERSION,
+        "service": settings.APP_NAME
+    }

@@ -1,4 +1,4 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 from typing import Optional
 
 
@@ -22,7 +22,6 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "tron_tracker"
 
     # Настройки TRON API
-    TRON_API_URL: str = "https://api.trongrid.io"
     TRON_API_KEY: Optional[str] = None
 
     @property

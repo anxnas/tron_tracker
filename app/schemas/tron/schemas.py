@@ -30,4 +30,4 @@ class AddressQueryResponse(BaseModel):
     created_at: datetime = Field(..., description="Дата и время создания записи")
 
     class Config:
-        orm_mode = True
+        from_attributes = True

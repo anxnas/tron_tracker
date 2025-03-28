@@ -9,7 +9,6 @@ from tronpy.exceptions import (
 )
 from typing import Dict, Any
 
-from app.config import settings
 from app.utils import log
 from app.exceptions import TronAPIException, TronAddressNotFoundException, TronNetworkException
 
@@ -19,10 +18,7 @@ class TronService:
 
     def __init__(self):
         """Инициализация клиента TRON API."""
-        if settings.TRON_API_KEY:
-            self.client = Tron(network='mainnet', api_key=settings.TRON_API_KEY)
-        else:
-            self.client = Tron(network='mainnet')
+        self.client = Tron(network='mainnet')
 
     async def get_address_info(self, address: str) -> Dict[str, Any]:
         """
@@ -53,7 +49,7 @@ class TronService:
 
             # Получаем аккаунт
             try:
-                account = self.client.get_account(address)
+                account = self.client.get_account_balance(address)
             except AddressNotFound as e:
                 log.error(f"Адрес {address} не найден: {str(e)}")
                 raise TronAddressNotFoundException(f"Адрес {address} не найден в сети TRON")
