@@ -1,5 +1,6 @@
 from .base import BaseAppException, NotFoundError, ValidationError, APIError, DatabaseError
 from .repository import RecordNotFoundError, DatabaseOperationError, InvalidPaginationError
+from .tron import TronAPIException, TronAddressNotFoundException, TronNetworkException
 
 __all__ = [
     "BaseAppException",
@@ -9,5 +10,8 @@ __all__ = [
     "DatabaseError",
     "RecordNotFoundError",
     "DatabaseOperationError",
-    "InvalidPaginationError"
+    "InvalidPaginationError",
+    "TronAPIException",
+    "TronAddressNotFoundException",
+    "TronNetworkException"
 ]
