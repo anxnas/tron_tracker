@@ -156,7 +156,8 @@ pytest
 pytest --cov=api
 
 # Запуск конкретного теста
-pytest api/tests/test_models.py
+pytest app/tests/unit/test_repositories.py
+
 ```
 
 ### Тесты
