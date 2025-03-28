@@ -48,3 +48,6 @@ postgres_data/
 # Alembic migrations
 migrations/versions/*.py
 !migrations/versions/.gitkeep
+
+# Roadmap project
+ROADMAP.md
