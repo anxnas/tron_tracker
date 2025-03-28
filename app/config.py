@@ -21,9 +21,6 @@ class Settings(BaseSettings):
     POSTGRES_PASSWORD: str = "postgres"
     POSTGRES_DB: str = "tron_tracker"
 
-    # Настройки TRON API
-    TRON_API_KEY: Optional[str] = None
-
     @property
     def DATABASE_URI(self) -> str:
         """
